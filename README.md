@@ -17,32 +17,38 @@ MSA-poc/
 
 ## Quick Start
 
-### 1. Start Nacos
+### Prerequisites
+
+- Java 17+
+- Docker (for Nacos)
+
+### All-in-one
 
 ```bash
-cd nacos
-docker compose up -d
+# Build both services
+./build.sh
+
+# Start everything (Nacos -> provider -> consumer)
+./run-all.sh
+```
+
+### Individual scripts (in `scripts/`)
+
+```bash
+# Start Nacos only
+./scripts/run-nacos.sh
+
+# Start provider (JAR mode, run ./build.sh first)
+./scripts/run-provider.sh
+
+# Start consumer (JAR mode, run ./build.sh first)
+./scripts/run-consumer.sh
 ```
 
 Console: http://localhost:8848/nacos (nacos/nacos)
 
-### 2. Start server-provider
-
-```bash
-cd server-provider
-./mvnw spring-boot:run
-```
-
-Runs on port 8080.
-
-### 3. Start server-consumer
-
-```bash
-cd server-consumer
-./mvnw spring-boot:run
-```
-
-Runs on port 8081.
+- server-provider: port 8080
+- server-consumer: port 8081
 
 ## Endpoints
 

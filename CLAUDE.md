@@ -25,7 +25,7 @@ Each service has its own `CLAUDE.md` with package structure, dependencies, endpo
 - **server-provider** registers in Nacos and exposes REST endpoints under `/provider/*`.
 - **server-consumer** discovers `server-provider` through Nacos and calls it via OpenFeign (`@FeignClient(name = "server-provider")`), with Spring Cloud LoadBalancer handling client-side load balancing.
 - Both services pull remote config from Nacos via `spring.config.import: nacos:<service>.yaml`.
-- `cms-common` (`com.cms:cms-common:1.0.0`) is a local/custom dependency providing shared utilities like `Result<T>`. It is not a public library.
+- Both services define their own `Result<T>` uniform response wrapper locally under `common.Result`.
 
 ## Startup Order
 

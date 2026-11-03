@@ -20,8 +20,8 @@ com.example.serverprovider
     └── ProviderController         # REST controller → /provider/*
 ```
 
-- **Controller layer** handles HTTP requests; returns `Result<T>` wrappers from the `cms-common` dependency.
-- **`cms-common`** (`com.cms:cms-common:1.0.0`) is a local/custom dependency providing shared utilities like `com.cms.common.base.Result`. It is not a public library.
+- **Controller layer** handles HTTP requests; returns `Result<T>` wrappers for uniform response format.
+- **`Result<T>`** is defined locally in `com.example.serverprovider.common.Result`.
 - **Spring Cloud 2023.0.3 (Leyton)** + **Spring Cloud Alibaba 2023.0.1.2** provide Nacos integration.
 - **Nacos Discovery** — the service registers itself with Nacos on startup (`@EnableDiscoveryClient`).
 - **Nacos Config** — remote config is loaded via `spring.config.import: nacos:server-provider.yaml` (Nacos dataId: `server-provider.yaml`, group: `DEFAULT_GROUP`).
@@ -81,7 +81,7 @@ The project uses Maven with the Maven Wrapper (`mvnw` / `mvnw.cmd`).
 
 ## Conventions
 
-- API responses use `Result<T>` from `com.cms.common.base.Result` as a uniform wrapper.
+- API responses use `Result<T>` from `com.example.serverprovider.common.Result` as a uniform wrapper.
 - Controllers use `@RestController` (not `@Controller`) — all endpoints return JSON.
 - Dependencies are injected with `@Autowired` field injection.
 - Configuration is in `application.yml` (not `.properties`).

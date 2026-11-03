@@ -26,7 +26,7 @@ com.example.serversconsumer
 - **Feign client layer** (`ProviderClient`) calls `server-provider` using `@FeignClient(name = "server-provider")` — the service URL is resolved dynamically via Nacos + Spring Cloud LoadBalancer, no hard-coded URL.
 - **Spring Cloud LoadBalancer** is required for Feign + service discovery to work (included as a direct dependency).
 - Service-to-service calls return `Result<Object>` to accommodate generic JSON deserialization across process boundaries.
-- **`cms-common`** (`com.cms:cms-common:1.0.0`) is a local/custom dependency providing shared utilities like `com.cms.common.base.Result`. It is not a public library.
+- **`Result<T>`** is defined locally in `com.example.serversconsumer.common.Result`.
 - **Spring Cloud 2023.0.3 (Leyton)** + **Spring Cloud Alibaba 2023.0.1.2** provide OpenFeign, LoadBalancer, and Nacos integration.
 - **Nacos Discovery** — the service registers itself and discovers `server-provider` through Nacos.
 - **Nacos Config** — remote config is loaded via `spring.config.import: nacos:server-consumer.yaml` (Nacos dataId: `server-consumer.yaml`, group: `DEFAULT_GROUP`).
@@ -96,7 +96,7 @@ cd ../nacos && docker compose up -d
 
 ## Conventions
 
-- API responses use `Result<T>` from `com.cms.common.base.Result` as a uniform wrapper.
+- API responses use `Result<T>` from `com.example.serversconsumer.common.Result` as a uniform wrapper.
 - Controllers use `@RestController` (not `@Controller`) — all endpoints return JSON.
 - Dependencies are injected with `@Autowired` field injection.
 - Feign clients use `@FeignClient(name = "...")` with Nacos-based service discovery (no URL property).

@@ -1,6 +1,6 @@
 package com.example.serversconsumer.controller;
 
-import com.cms.common.base.Result;
+import com.example.serversconsumer.common.Result;
 import com.example.serversconsumer.client.ProviderClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

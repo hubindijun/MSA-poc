@@ -103,12 +103,6 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!--import local dependency jars  -->
-        <dependency>
-            <groupId>com.cms</groupId>
-            <artifactId>cms-common</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
 
     <build>

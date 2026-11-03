@@ -1,6 +1,6 @@
 package com.example.serversconsumer.client;
 
-import com.cms.common.base.Result;
+import com.example.serversconsumer.common.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

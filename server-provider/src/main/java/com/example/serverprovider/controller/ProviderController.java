@@ -2,7 +2,7 @@ package com.example.serverprovider.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.cms.common.base.Result;
+import com.example.serverprovider.common.Result;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
