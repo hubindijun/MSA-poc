@@ -1,0 +1,21 @@
+services:
+  nacos:
+    image: nacos/nacos-server:v3.2.1
+    container_name: nacos-standalone
+    platform: linux/amd64
+    environment:
+      - MODE=standalone
+      - PREFER_HOST_MODE=hostname
+      - NACOS_AUTH_ENABLE=false
+      - NACOS_AUTH_TOKEN=SecretKey012345678901234567890123456789012345678901234567890123456789
+      - NACOS_AUTH_IDENTITY_KEY=serverIdentity
+      - NACOS_AUTH_IDENTITY_VALUE=security
+    volumes:
+      - ./data:/home/nacos/data
+      - ./logs:/home/nacos/logs
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+      - "8849:8080"
+    restart: unless-stopped
