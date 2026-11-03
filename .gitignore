@@ -35,3 +35,6 @@ build/
 ### Nacos runtime data ###
 nacos/data/
 nacos/logs/
+
+### Claude Code ###
+.claude/
