@@ -1,0 +1,10 @@
+apiVersion: 1
+
+providers:
+  - name: 'MSA POC Dashboards'
+    folder: 'MSA POC'
+    type: file
+    disableDeletion: false
+    editable: true
+    options:
+      path: /var/lib/grafana/dashboards

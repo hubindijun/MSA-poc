@@ -87,6 +87,10 @@ cd ../nacos && docker compose up -d
 | `GET /consumer/query` | Calls `server-provider`'s `/provider/query` via Feign (Nacos-discovered) and returns the result |
 | `/swagger-ui.html` | Swagger UI (SpringDoc) |
 | `/v3/api-docs` | OpenAPI JSON spec |
+| `/actuator/prometheus` | Prometheus metrics endpoint (scraped by Prometheus) |
+| `/actuator/health` | Health check endpoint |
+| `/actuator/metrics` | Metrics list and individual metric inspection |
+| `/actuator/info` | Application info |
 
 ## Nacos
 

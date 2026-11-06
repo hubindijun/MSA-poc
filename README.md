@@ -7,6 +7,7 @@ Microservice Architecture proof-of-concept with Spring Boot, Spring Cloud Alibab
 ```
 MSA-poc/
 ├── nacos/              # Nacos server (Docker Compose) - service discovery + config center
+├── monitoring/         # Prometheus + Grafana (Docker Compose) - observability stack
 ├── server-provider/    # Provider service (port 8080) - exposes REST endpoints
 └── server-consumer/    # Consumer service (port 8081) - calls provider via Feign + Nacos discovery
 ```
@@ -14,6 +15,8 @@ MSA-poc/
 - **server-provider** registers itself in Nacos and provides `/provider/*` endpoints.
 - **server-consumer** discovers `server-provider` through Nacos and calls it via OpenFeign (`@FeignClient(name = "server-provider")`).
 - Both services use Nacos Config for remote configuration (`spring.config.import`).
+- Both services expose Prometheus metrics via Spring Boot Actuator at `/actuator/prometheus`.
+- **Monitoring stack**: Prometheus scrapes both services (static targets), Grafana provides pre-built dashboards (JVM, HTTP requests).
 
 ## Quick Start
 
@@ -47,8 +50,17 @@ MSA-poc/
 
 Console: http://localhost:8848/nacos (nacos/nacos)
 
+Start monitoring stack (optional):
+```bash
+cd monitoring && docker compose up -d
+```
+
+- Prometheus UI: http://localhost:9090
+- Grafana: http://localhost:3000 (admin/admin)
 - server-provider: port 8080
 - server-consumer: port 8081
+
+See [monitoring/guide.md](monitoring/guide.md) for detailed monitoring setup and usage.
 
 ## Endpoints
 
@@ -58,6 +70,8 @@ Console: http://localhost:8848/nacos (nacos/nacos)
 | server-consumer | `/consumer/query` | Calls provider via Feign and returns result |
 | both | `/swagger-ui.html` | Swagger UI |
 | both | `/v3/api-docs` | OpenAPI JSON spec |
+| both | `/actuator/prometheus` | Prometheus metrics endpoint |
+| both | `/actuator/health` | Health check endpoint |
 
 ## Tech Stack
 
@@ -67,3 +81,6 @@ Console: http://localhost:8848/nacos (nacos/nacos)
 - Spring Cloud OpenFeign + Spring Cloud LoadBalancer
 - SpringDoc OpenAPI 2.3.0
 - Lombok
+- Spring Boot Actuator + Micrometer Prometheus
+- Prometheus v2.54.1
+- Grafana 11.2.0

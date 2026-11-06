@@ -73,6 +73,10 @@ The project uses Maven with the Maven Wrapper (`mvnw` / `mvnw.cmd`).
 | `GET /provider/query` | Returns `Result.ok("Provider OK!")` — consumed by server-consumer via Feign |
 | `/swagger-ui.html` | Swagger UI (SpringDoc) |
 | `/v3/api-docs` | OpenAPI JSON spec |
+| `/actuator/prometheus` | Prometheus metrics endpoint (scraped by Prometheus) |
+| `/actuator/health` | Health check endpoint |
+| `/actuator/metrics` | Metrics list and individual metric inspection |
+| `/actuator/info` | Application info |
 
 ## Nacos
 
